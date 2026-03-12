@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Owl AI | Midnight Guardian</title>a
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Quicksand:wght@300;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --forest-black: #0d0d0d;
+            --owl-brown: #5d4037;
+            --owl-orange: #ffb74d; /* Matches the owl's face */
+            --owl-tan: #ffe0b2;
+            --text-light: #f5f5f5;
+            --accent-glow: rgba(255, 183, 77, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {a
+            background-color: var(--forest-black);
+            color: var(--text-light);
+            font-family: 'Quicksand', sans-serif;
+            height: 100vh;
+            overflow: hidden; /* Prevent scrolling between pages */
+        }
+
+        /* --- NAVIGATION --- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(13, 13, 13, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 2px solid var(--owl-brown);
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+            color: var(--owl-orange);
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.8rem;
+        }
+
+        .logo-area img {
+            height: 50px;
+            border-radius: 50%;
+        }
+
+        .nav-tabs {
+            display: flex;
+            gap: 10px;
+        }
+
+        .nav-tabs a {
+            text-decoration: none;
+            color: var(--text-light);
+            padding: 10px 20px;
+            border-radius: 12px;
+            font-weight: 600;
+            transition: 0.3s;
+            background: rgba(255,255,255,0.05);
+        }
+
+        .nav-tabs a:hover, .nav-tabs a.active {
+            background: var(--owl-orange);
+            color: var(--forest-black);
+            box-shadow: 0 0 15px var(--accent-glow);
+        }
+
+        /* --- PAGE LOGIC --- */
+        .page {
+            display: none; /* Hidden by default */
+            height: 100vh;
+            padding: 120px 10% 40px;
+            animation: fadeIn 0.5s ease-in-out;
+            overflow-y: auto;
+        }
+
+        .page.active {
+            display: block; /* Only show active page */
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1, h2 {
+            font-family: 'Fredoka', sans-serif;
+            color: var(--owl-orange);
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: var(--owl-tan);
+            max-width: 800px;
+        }
+
+        /* --- ABOUT STYLING --- */
+        .model-info {
+            background: rgba(93, 64, 55, 0.2);
+            border-left: 5px solid var(--owl-orange);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 15px 15px 0;
+        }
+
+        /* --- PURCHASE STYLING --- */
+        .vip-card {
+            background: linear-gradient(145deg, #1a1a1a, #0d0d0d);
+            border: 2px solid var(--owl-brown);
+            padding: 40px;
+            border-radius: 30px;
+            text-align: center;
+            max-width: 500px;
+            margin: 40px auto;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        }
+
+        .price-tag {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 4rem;
+            color: var(--owl-orange);
+            margin: 20px 0;
+        }
+
+        .buy-button {
+            display: block;
+            background: var(--owl-orange);
+            color: var(--forest-black);
+            padding: 18px;
+            border-radius: 15px;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 1.2rem;
+            transition: 0.3s;
+        }
+
+        .buy-button:hover {
+            transform: scale(1.05);
+            background: #ffa726;
+        }
+
+        /* --- TOS STYLING --- */
+        .tos-box {
+            background: #1a1a1a;
+            padding: 30px;
+            border-radius: 20px;
+            border: 1px solid var(--owl-brown);
+            font-size: 0.95rem;
+        }
+
+        .contact-footer {
+            margin-top: 40px;
+            padding: 20px;
+            text-align: center;
+            border-top: 1px solid var(--owl-brown);
+            color: var(--owl-tan);
+        }
+
+        /* --- SCROLLBAR --- */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--forest-black); }
+        ::-webkit-scrollbar-thumb { background: var(--owl-brown); border-radius: 10px; }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="#about" class="logo-area">
+            <img src="images/logo.png" alt="Owl AI">
+            <span>Owl AI</span>
+        </a>
+        <div class="nav-tabs">
+            <a href="#about" id="tab-about">About</a>
+            <a href="#purchase" id="tab-purchase">Purchase</a>
+            <a href="#tos" id="tab-tos">ToS</a>
+        </div>
+    </nav>
+
+    <div id="about" class="page">
+        <h1>Wise Beyond Its Bytes.</h1>
+        <p>Owl AI isn't just a bot; it's a vigilant guardian for your Discord community. Designed to be both helpful and fiercely efficient.</p>
+        
+        <div class="model-info">
+            <h3>The AI Brain: Llama Dolphin</h3>
+            <p>We utilize the Dolphin variant of Llama, optimized for high-compliance tasks and natural, uncensored dialogue. It understands context, sarcasm, and complex server hierarchies better than any standard bot.</p>
+        </div>
+
+        <h2>What can I do?</h2>
+        <ul style="color: var(--owl-tan); line-height: 2; font-size: 1.1rem; margin-left: 20px;">
+            <li>🌙 <strong>Context Memory:</strong> Reads the last 32 messages to stay in the loop.</li>
+            <li>🦉 <strong>Role Recognition:</strong> Knows who the admins are and respects the hierarchy.</li>
+            <li>🔨 <strong>Instant Moderation:</strong> Ban, Kick, or Mute via natural language commands.</li>
+            <li>📁 <strong>Server Architecture:</strong> Create or delete channels and categories on the fly.</li>
+        </ul>
+    </div>
+
+    <div id="purchase" class="page">
+        <h2 style="text-align: center;">Join the Night Watch</h2>
+        <div class="vip-card">
+            <h3 style="color: var(--text-light);">OWL VIP MEMBERSHIP</h3>
+            <div class="price-tag">$2.00</div>
+            <p style="margin-bottom: 30px;">LIFETIME ACCESS</p>
+            <ul style="text-align: left; color: var(--owl-tan); margin-bottom: 30px; list-style: none;">
+                <li>✨ Priority Processing (No Latency)</li>
+                <li>✨ Custom Bot Personality Settings</li>
+                <li>✨ Advanced Logging Features</li>
+                <li>✨ Exclusive "Owl VIP" Discord Role</li>
+            </ul>
+            <a href="#" class="buy-button">GET VIP ACCESS</a>
+        </div>
+    </div>
+
+    <div id="tos" class="page">
+        <h1>Terms of Service</h1>
+        <div class="tos-box">
+            <h3>1. Usage Policy</h3>
+            <p>Owl AI is provided "as is." While the AI is advanced, server owners are responsible for the actions the AI takes under their command. Do not use Owl AI for illegal activities.</p>
+            <br>
+            <h3>2. Data & Privacy</h3>
+            <p>We value your privacy. Owl AI reads message history locally on our VPS to provide context. We do not sell your chat logs or store them longer than necessary for processing.</p>
+            <br>
+            <h3>3. VIP Subscriptions</h3>
+            <p>VIP status is a one-time payment of $2.00. This is non-refundable. If you are banned from a server or Discord itself, the VIP status cannot be transferred.</p>
+        </div>
+
+        <div class="contact-footer">
+            Need help? Reach out at: <br>
+            <strong style="color: var(--owl-orange);">owl-ai-support@proton.me</strong>
+        </div>
+    </div>
+
+    <script>
+        // Simple SPA Router
+        function router() {
+            const hash = window.location.hash || '#about';
+            const pages = document.querySelectorAll('.page');
+            const tabs = document.querySelectorAll('.nav-tabs a');
+
+            pages.forEach(page => {
+                page.classList.remove('active');
+                if (`#${page.id}` === hash) {
+                    page.classList.add('active');
+                }
+            });
+
+            tabs.forEach(tab => {
+                tab.classList.remove('active');
+                if (tab.getAttribute('href') === hash) {
+                    tab.classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('hashchange', router);
+        window.addEventListener('load', router);
+    </script>
+</body>
+</html>
