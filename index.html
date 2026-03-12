@@ -410,16 +410,16 @@ const OpenPurchase = document.getElementById('OpenPurchase')
 const PurchaseModal = document.getElementById('PurchaseModal')
 const ClosePurchase = document.getElementById('ClosePurchase')
 
-OpenPurchase.onclick=Function(Event){
+OpenPurchase.onclick=function(Event){
 Event.preventDefault()
 PurchaseModal.style.display='flex'
 }
 
-ClosePurchase.onclick=Function(){
+ClosePurchase.onclick=function(){
 PurchaseModal.style.display='none'
 }
 
-window.onclick=Function(Event){
+window.onclick=function(Event){
 if(Event.target===PurchaseModal){
 PurchaseModal.style.display='none'
 }
